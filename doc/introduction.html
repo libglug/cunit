@@ -106,16 +106,6 @@ A typical sequence of steps for using the CUnit framework is:
   <LI>Cleanup the test registry - <A HREF="test_registry.html#cleanup">CU_cleanup_registry</A></LI>
 </OL>
 
-<H3 ID="changes">1.4. Changes to the CUnit API in Version 2</H3>
-All public names in CUnit are now prefixed with 'CU_'.  This helps
-minimize clashes with names in user code.  Note that earlier versions
-of CUnit used different names without this prefix.  The older API names
-are deprecated but still supported.  To use the older names, user code
-must now be compiled with <CITE>USE_DEPRECATED_CUNIT_NAMES</CITE> defined.
-<P />
-The deprecated API functions are described in the appropriate sections of
-the documentation.
-
 <DIV CLASS="NAVFOOTER">
 <HR ALIGN="LEFT" WIDTH="100%">
 <TABLE SUMMARY="Footer navigation table" WIDTH="100%" BORDER="0" CELLPADDING="0" CELLSPACING="0">

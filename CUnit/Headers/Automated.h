@@ -21,6 +21,8 @@
 /*
  *  Automated Interface (generates HTML Report Files).
  *
+ *  14/Nov/2018   Removed deprecated interface (DC)
+ *
  *  Feb 2002      Initial implementation (AK)
  *
  *  13-Feb-2002   Single interface to automated_run_tests. (AK)
@@ -75,13 +77,6 @@ CU_EXPORT void CU_set_output_filename(const char* szFilenameRoot);
  *
  *  @param szFilenameRoot String containing root to use for file names.
  */
-
-#ifdef USE_DEPRECATED_CUNIT_NAMES
-/** Deprecated (version 1). @deprecated Use CU_automated_run_tests(). */
-#define automated_run_tests() CU_automated_run_tests()
-/** Deprecated (version 1). @deprecated Use CU_set_output_filename(). */
-#define set_output_filename(x) CU_set_output_filename((x))
-#endif  /* USE_DEPRECATED_CUNIT_NAMES */
 
 void CU_automated_enable_junit_xml(CU_BOOL bFlag);
 

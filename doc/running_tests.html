@@ -336,33 +336,6 @@ the linked list of failures returned by <CITE>CU_get_failure_list()</CITE>.  Not
 that this can be more than the number of failed assertions, since suite
 initialization and cleanup failures are included.</P>
 
-<H3 ID="deprecated">5.8. Deprecated v1 Data Types & Functions</H3>
-The following data types and functions are deprecated as of version 2.
-To use these deprecated names, user code must be compiled with
-<CITE>USE_DEPRECATED_CUNIT_NAMES</CITE> defined.
-<P />
-<TABLE CELLPADDING=5 BORDER=2>
-  <TR VALIGN="top">
-    <TD><B>Deprecated Name</B></TD>
-    <TD><B>Equivalent New Name</B></TD>
-  </TR>
-  <TR VALIGN="top">
-    <TD><CODE>automated_run_tests()</CODE></TD>
-    <TD>
-      <A HREF="#auto-run">CU_automated_run_tests()</A> plus<BR />
-      <A HREF="#auto-list">CU_list_tests_to_file()</A>
-    </TD>
-  </TR>
-  <TR VALIGN="top">
-    <TD><CODE>set_output_filename()</CODE></TD>
-    <TD><A HREF="#auto-setroot">CU_set_output_filename()</A></TD>
-  </TR>
-  <TR VALIGN="top">
-    <TD><CODE>console_run_tests()</CODE></TD>
-    <TD><A HREF="#console-run">CU_console_run_tests()</A></TD>
-  </TR>
-</TABLE>
-
 <DIV CLASS="NAVFOOTER">
 <HR ALIGN="LEFT" WIDTH="100%">
 <TABLE SUMMARY="Footer navigation table" WIDTH="100%" BORDER="0" CELLPADDING="0" CELLSPACING="0">

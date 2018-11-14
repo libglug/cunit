@@ -134,12 +134,12 @@ The following error code values are defined:
 
 <H3 ID="erroraction">6.3. Behavior Upon Framework Errors</H3>
 The default behavior when an error condition is encountered is for the
-error code to be set and execution continued.  In this context, failed 
+error code to be set and execution continued.  In this context, failed
 assertions are not considered "framework errors".  All other error conditions
 including suite initialization or cleanup failures, inactive suites or tests
-which are run explicitly, etc. are included.  There may be times when clients 
-prefer for a test run to stop on a framework error, or even for the test 
-application to exit.  This behavior can be set by the user, for which the 
+which are run explicitly, etc. are included.  There may be times when clients
+prefer for a test run to stop on a framework error, or even for the test
+application to exit.  This behavior can be set by the user, for which the
 following functions are provided:
 <P CLASS="indent2">
   <CITE ID="setaction">void <B>CU_set_error_action</B>(CU_ErrorAction action)</CITE><BR />
@@ -165,26 +165,6 @@ The following error action codes are defined:
   <TR>
     <TD><CITE>CUEA_ABORT</CITE></TD>
     <TD>The application should exit() when an error conditions occurs</TD>
-  </TR>
-</TABLE>
-
-<H3 ID="deprecated">6.4. Deprecated v1 Variables & Functions</H3>
-The following variables and functions are deprecated as of version 2.
-To use these deprecated names, user code must be compiled with
-<CITE>USE_DEPRECATED_CUNIT_NAMES</CITE> defined.
-<P />
-<TABLE CELLPADDING=5 BORDER=2>
-  <TR VALIGN="top">
-    <TD><B>Deprecated Name</B></TD>
-    <TD><B>Equivalent New Name</B></TD>
-  </TR>
-  <TR VALIGN="top">
-    <TD><CODE>get_error()</CODE></TD>
-    <TD><A HREF="#getmsg">CU_get_error_msg()</A></TD>
-  </TR>
-  <TR VALIGN="top">
-    <TD><CODE>error_code</CODE></TD>
-    <TD>None.  Use <A HREF="#getcode">CU_get_error()</A></TD>
   </TR>
 </TABLE>
 

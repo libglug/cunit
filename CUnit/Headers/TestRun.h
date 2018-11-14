@@ -21,6 +21,8 @@
 /*
  *  Contains Interface to Run tests.
  *
+ *  14/Nov/2018   Removed deprecated interface (DC)
+ *
  *  Aug 2001      Initial implementation. (AK)
  *
  *  09/Aug/2001   Contains generic run tests interface which can be used
@@ -440,11 +442,6 @@ CU_EXPORT CU_BOOL CU_assertImplementation(CU_BOOL bValue,
  *  @param bFatal        CU_TRUE to abort test (via longjmp()), CU_FALSE to continue test.
  *  @return As a convenience, returns the value of the assertion (i.e. bValue).
  */
-
-#ifdef USE_DEPRECATED_CUNIT_NAMES
-typedef CU_FailureRecord  _TestResult;  /**< @deprecated Use CU_FailureRecord. */
-typedef CU_pFailureRecord PTestResult;  /**< @deprecated Use CU_pFailureRecord. */
-#endif  /* USE_DEPRECATED_CUNIT_NAMES */
 
 #ifdef CUNIT_BUILD_TESTS
 void test_cunit_TestRun(void);

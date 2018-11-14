@@ -72,14 +72,6 @@ to use the interactive console.
 6. Cleanup the test registry using
 .B CU_cleanup_registry()
 .PD 2v
-.P
-All public names in CUnit are prefixed with 'CU_'.  This helps
-minimize clashes with names in user code.  Note that earlier versions
-CUnit used different names without this prefix.  The older API names
-are deprecated but still supported.  To use the older names, user code
-must now be compiled with
-.B USE_DEPRECATED_CUNIT_NAMES
-defined.
 
 .SH "WRITING TEST FUNCTIONS"
 A "test" is a C function having the signature:

@@ -21,6 +21,8 @@
 /*
  *  Contains CUnit error codes which can be used externally.
  *
+ *  14/Nov/2018   Removed deprecated interface (DC)
+ *
  *  Aug 2001      Initial implementation.  (AK)
  *
  *  02/Oct/2001   Added proper Eror Codes. (AK)
@@ -189,11 +191,6 @@ CU_EXPORT void CU_set_error(CU_ErrorCode error);
 #ifdef __cplusplus
 }
 #endif
-
-#ifdef USE_DEPRECATED_CUNIT_NAMES
-/** Deprecated (version 1). @deprecated Use CU_get_error_msg(). */
-#define get_error() CU_get_error_msg()
-#endif  /* USE_DEPRECATED_CUNIT_NAMES */
 
 #endif  /*  CUNIT_CUERROR_H_SEEN  */
 /** @} */

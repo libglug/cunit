@@ -21,6 +21,8 @@
 /*
  *  Contains Interface for console Run tests.
  *
+ *  14/Nov/2018   Removed deprecated interface (DC)
+ *
  *  Aug 2001      Initial implementation. (AK)
  *
  *  09/Aug/2001   Single interface to Console_run_tests. (AK)
@@ -47,11 +49,6 @@ extern "C" {
 
 CU_EXPORT void CU_console_run_tests(void);
 /**< Run registered CUnit tests using the console interface. */
-
-#ifdef USE_DEPRECATED_CUNIT_NAMES
-/** Deprecated (version 1). @deprecated Use CU_console_run_tests(). */
-#define console_run_tests() CU_console_run_tests()
-#endif  /* USE_DEPRECATED_CUNIT_NAMES */
 
 #ifdef __cplusplus
 }

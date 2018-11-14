@@ -22,6 +22,8 @@
  *  Contains Type Definitions for some generic functions used across
  *  CUnit project files.
  *
+ *  14/Nov/2018   Removed deprecated interface (DC)
+ *
  *  13/Oct/2001   Moved some of the generic functions declarations from
  *                other files to this one so as to use the functions
  *                consitently. This file is not included in the distribution
@@ -136,23 +138,6 @@ void test_cunit_Util(void);
 #ifdef __cplusplus
 }
 #endif
-
-#ifdef USE_DEPRECATED_CUNIT_NAMES
-#define CUNIT_MAX_STRING_LENGTH	1024
-/**< Maximum string length. */
-#define translate_special_characters(src, dest, len) CU_translate_special_characters(src, dest, len)
-/**< Deprecated (version 1). @deprecated Use CU_translate_special_characters(). */
-#define compare_strings(src, dest) CU_compare_strings(src, dest)
-/**< Deprecated (version 1). @deprecated Use CU_compare_strings(). */
-
-#define trim_left(str) CU_trim_left(str)
-/**< Deprecated (version 1). @deprecated Use CU_trim_left(). */
-#define trim_right(str) CU_trim_right(str)
-/**< Deprecated (version 1). @deprecated Use CU_trim_right(). */
-#define trim(str) CU_trim(str)
-/**< Deprecated (version 1). @deprecated Use CU_trim(). */
-
-#endif  /* USE_DEPRECATED_CUNIT_NAMES */
 
 #endif /* CUNIT_UTIL_H_SEEN */
 /** @} */
