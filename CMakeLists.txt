@@ -1,0 +1,44 @@
+project(CUnit)
+cmake_minimum_required(VERSION 3.0)
+
+option(BUILD_STATIC "Build as a static library instead of shared")
+set(INSTALL_ROOT ${CMAKE_CURRENT_BINARY_DIR}/dist CACHE STRING "Specify a custom install directory")
+
+set(INSTALL_LIB_DIR ${INSTALL_ROOT}/lib)
+set(INSTALL_DOC_DIR ${INSTALL_ROOT}/doc/${CMAKE_PROJECT_NAME})
+set(INSTALL_INC_DIR ${INSTALL_ROOT}/include/${CMAKE_PROJECT_NAME})
+set(INSTALL_MAN_DIR ${INSTALL_ROOT}/man)
+set(INSTALL_SHARE_DIR ${INSTALL_ROOT}/share/${CMAKE_PROJECT_NAME})
+
+set(CUNIT_SRC_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/CUnit)
+set(CUNIT_INC_ROOT ${CUNIT_SRC_ROOT}/Headers)
+set(CUNIT_DOC_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/doc)
+set(CUNIT_EX_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/Examples)
+set(CUNIT_MAN_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/man)
+
+configure_file(${CUNIT_INC_ROOT}/CUnit.h.in CUnit.h)
+file(GLOB HEADERS "${CUNIT_INC_ROOT}/*.h")
+list(APPEND HEADERS ${CMAKE_BINARY_DIR}/CUnit.h)
+
+add_subdirectory(${CUNIT_SRC_ROOT})
+add_subdirectory(${CUNIT_EX_ROOT})
+
+install(
+    FILES ${HEADERS}
+    DESTINATION ${INSTALL_INC_DIR}
+)
+
+install(
+    DIRECTORY ${CUNIT_DOC_ROOT}/.
+    DESTINATION ${INSTALL_DOC_DIR}
+)
+
+install(
+    DIRECTORY ${INSTALL_INC_DIR}/.
+    DESTINATION ${INSTALL_DOC_DIR}/headers
+)
+
+install(
+    DIRECTORY ${CUNIT_MAN_ROOT}/.
+    DESTINATION ${INSTALL_MAN_DIR}
+)
