@@ -1,0 +1,4 @@
+add_subdirectory(AutomatedTest)
+add_subdirectory(BasicTest)
+add_subdirectory(ConsoleTest)
+add_subdirectory(Demo_fprintf)

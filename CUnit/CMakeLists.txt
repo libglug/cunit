@@ -9,16 +9,16 @@ endif()
 list(
     APPEND
     SOURCES
-    Headers/Automated.h
-    Headers/Basic.h
-    Headers/Console.h
-    Headers/CUError.h
-    Headers/CUnit.h.in
-    Headers/CUnit_intl.h
-    Headers/MyMem.h
-    Headers/TestDB.h
-    Headers/TestRun.h
-    Headers/Util.h
+    Headers/CUnit/Automated.h
+    Headers/CUnit/Basic.h
+    Headers/CUnit/Console.h
+    Headers/CUnit/CUError.h
+    Headers/CUnit/CUnit.h.in
+    Headers/CUnit/CUnit_intl.h
+    Headers/CUnit/MyMem.h
+    Headers/CUnit/TestDB.h
+    Headers/CUnit/TestRun.h
+    Headers/CUnit/Util.h
     Sources/Automated/Automated.c
     Sources/Basic/Basic.c
     Sources/Console/Console.c
@@ -37,21 +37,32 @@ add_library(
     ${SOURCES}
 )
 
-# because "CUnit.h" is a configured file and is temporarily in ${CMAKE_BINARY_DIR}
+if (${LIB_TYPE} STREQUAL "SHARED")
+    target_compile_definitions(
+        ${LIB_NAME}
+        PRIVATE
+        CU_DLL
+        CU_BUILD_DLL
+    )
+endif()
+
 target_include_directories(
     ${LIB_NAME}
     PUBLIC
-    $<BUILD_INTERFACE:${CMAKE_BINARY_DIR}>
-    $<INSTALL_INTERFACE:${INSTALL_ROOT}/include/${LIB_NAME}>
-)
-target_include_directories(
-    ${LIB_NAME}
-    PUBLIC
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Headers>
-    $<INSTALL_INTERFACE:${INSTALL_ROOT}/include/${LIB_NAME}>
+    $<BUILD_INTERFACE:${CMAKE_BINARY_DIR}> # because "CUnit.h" is a configured file
+    $<BUILD_INTERFACE:${CUNIT_INC_DIR}>
+    $<INSTALL_INTERFACE:${INSTALL_INC_DIR}>
 )
 
 install(
     TARGETS ${LIB_NAME}
     DESTINATION ${INSTALL_LIB_DIR}
 )
+
+# and install the lib in the share dir because Windows
+if (${BUILD_XMPLS} STREQUAL "ON")
+    install(
+        TARGETS ${LIB_NAME}
+        DESTINATION ${INSTALL_SHARE_DIR}
+    )
+endif()
