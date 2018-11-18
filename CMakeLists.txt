@@ -1,6 +1,10 @@
 project(CUnit)
 cmake_minimum_required(VERSION 3.0)
 
+set(CUNIT_VER_MAJOR 2)
+set(CUNIT_VER_MINOR 2)
+set(CUNIT_VER_PATCH 0)
+
 option(BUILD_STATIC "Build as a static library instead of shared")
 set(INSTALL_ROOT ${CMAKE_CURRENT_BINARY_DIR}/dist CACHE STRING "Specify a custom install directory")
 option(BUILD_XMPLS "Build (and install) the examples")

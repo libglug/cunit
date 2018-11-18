@@ -20,9 +20,7 @@
 
 /*
  *  Contains CUnit error codes which can be used externally.
- *
- *  14/Nov/2018   Removed deprecated interface (DC)
- *
+ * *
  *  Aug 2001      Initial implementation.  (AK)
  *
  *  02/Oct/2001   Added proper Eror Codes. (AK)
@@ -34,6 +32,8 @@
  *                error codes for file open errors, added error action selection. (JDS)
  *
  *  05-Sep-2004   Added internal test interface. (JDS)
+ *
+ *  14/Nov/2018   Removed deprecated interface. (DC)
  */
 
 /** @file

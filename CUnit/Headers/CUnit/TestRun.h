@@ -21,8 +21,6 @@
 /*
  *  Contains Interface to Run tests.
  *
- *  14/Nov/2018   Removed deprecated interface (DC)
- *
  *  Aug 2001      Initial implementation. (AK)
  *
  *  09/Aug/2001   Contains generic run tests interface which can be used
@@ -46,6 +44,8 @@
  *
  *  24-May-2006   Added callbacks for suite start and complete events.
  *                Added tracking/reported of elapsed time.  (JDS)
+ *
+ *  14/Nov/2018   Removed deprecated interface. (DC)
  */
 
 /** @file

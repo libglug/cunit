@@ -22,8 +22,6 @@
  *  Contains Type Definitions for some generic functions used across
  *  CUnit project files.
  *
- *  14/Nov/2018   Removed deprecated interface (DC)
- *
  *  13/Oct/2001   Moved some of the generic functions declarations from
  *                other files to this one so as to use the functions
  *                consitently. This file is not included in the distribution
@@ -38,6 +36,8 @@
  *                Fixed off-by-1 error in CU_translate_special_characters(),
  *                modifying implementation & results in some cases.  User can
  *                now tell if conversion failed. (JDS)
+ *
+ *  14/Nov/2018   Removed deprecated interface. (DC)
  */
 
 /** @file

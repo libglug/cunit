@@ -22,8 +22,6 @@
  *  Contains all the Type Definitions and functions declarations
  *  for the CUnit test database maintenance.
  *
- *  14/Nov/2018   Removed deprecated interface (DC)
- *
  *  Aug 2001      Initial implementation. (AK)
  *
  *  09/Aug/2001   Added Preprocessor conditionals for the file. (AK)
@@ -46,6 +44,7 @@
  *
  *  16-Avr-2007   Added setup and teardown functions. (CJN)
  *
+ *  14/Nov/2018   Removed deprecated interface. (DC)
  */
 
 /** @file

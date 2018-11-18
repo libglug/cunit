@@ -21,13 +21,13 @@
 /*
  *  Contains Interface for console Run tests.
  *
- *  14/Nov/2018   Removed deprecated interface (DC)
- *
  *  Aug 2001      Initial implementation. (AK)
  *
  *  09/Aug/2001   Single interface to Console_run_tests. (AK)
  *
  *  20-Jul-2004   New interface, doxygen comments. (JDS)
+ *
+ *  14/Nov/2018   Removed deprecated interface. (DC)
  */
 
 /** @file

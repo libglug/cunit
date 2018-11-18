@@ -21,8 +21,6 @@
 /*
  *  ASSERT Macro definitions and general CUnit configuration definitions.
  *
- *  14/Nov/2018   Removed deprecated interface (DC)
- *
  *  09/Aug/2001   ASSERT definitions. (AK)
  *
  *  12/Mar/2003   New Assert definitions. (AK)
@@ -38,6 +36,8 @@
  *
  *  07-May-2005   Added CU_ prefix to remaining CUnit defines (BOOL, TRUE,
  *                FALSE, MAX_...).  Added CU_UNREFERENCED_PARAMETER() define. (JDS)
+ *
+ *  14/Nov/2018   Removed deprecated interface. Update version vars. (DC)
  */
 
 /** @file
@@ -56,7 +56,10 @@
 #include <math.h>
 
 /** CUnit version number. */
-#define CU_VERSION "@VERSION@-@RELEASE@"
+#define CU_MAJOR_VERSION @CUNIT_VER_MAJOR@
+#define CU_MINOR_VERSION @CUNIT_VER_MINOR@
+#define CU_PATCH_VERSION @CUNIT_VER_PATCH@
+#define CU_VERSION "@CUNIT_VER_MAJOR@.@CUNIT_VER_MINOR@-@CUNIT_VER_PATCH@"
 
 /*  Max string lengths for names (includes terminating NULL. */
 /** Maximum length of a test name string. */
