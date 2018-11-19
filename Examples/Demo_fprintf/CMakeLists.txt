@@ -15,7 +15,7 @@ add_executable(
 
 target_link_libraries(
     ${EX_NAME}
-    ${CMAKE_PROJECT_NAME}
+    ${CUNIT_LIB_NAME}
 )
 
 target_include_directories(

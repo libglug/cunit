@@ -1,5 +1,3 @@
-set(LIB_NAME ${CMAKE_PROJECT_NAME})
-
 if (${BUILD_STATIC} STREQUAL "ON")
     set(LIB_TYPE STATIC)
 else()
@@ -32,14 +30,14 @@ list(
 )
 
 add_library(
-    ${LIB_NAME}
+    ${CUNIT_LIB_NAME}
     ${LIB_TYPE}
     ${SOURCES}
 )
 
 if (${LIB_TYPE} STREQUAL "SHARED")
     target_compile_definitions(
-        ${LIB_NAME}
+        ${CUNIT_LIB_NAME}
         PRIVATE
         CU_DLL
         CU_BUILD_DLL
@@ -47,7 +45,7 @@ if (${LIB_TYPE} STREQUAL "SHARED")
 endif()
 
 target_include_directories(
-    ${LIB_NAME}
+    ${CUNIT_LIB_NAME}
     PUBLIC
     $<BUILD_INTERFACE:${CMAKE_BINARY_DIR}> # because "CUnit.h" is a configured file
     $<BUILD_INTERFACE:${CUNIT_INC_DIR}>
@@ -55,14 +53,14 @@ target_include_directories(
 )
 
 install(
-    TARGETS ${LIB_NAME}
+    TARGETS ${CUNIT_LIB_NAME}
     DESTINATION ${INSTALL_LIB_DIR}
 )
 
 # and install the lib in the share dir because Windows
 if (${BUILD_XMPLS} STREQUAL "ON")
     install(
-        TARGETS ${LIB_NAME}
+        TARGETS ${CUNIT_LIB_NAME}
         DESTINATION ${INSTALL_SHARE_DIR}
     )
 endif()
