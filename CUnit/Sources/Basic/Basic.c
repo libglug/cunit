@@ -42,12 +42,12 @@
 #include <assert.h>
 #include <string.h>
 
-#include "CUnit.h"
-#include "TestDB.h"
-#include "Util.h"
-#include "TestRun.h"
-#include "Basic.h"
-#include "CUnit_intl.h"
+#include <CUnit/CUnit.h>
+#include <CUnit/TestDB.h>
+#include <CUnit/Util.h>
+#include <CUnit/TestRun.h>
+#include <CUnit/Basic.h>
+#include <CUnit/CUnit_intl.h>
 
 /*=================================================================
  *  Global/Static Definitions

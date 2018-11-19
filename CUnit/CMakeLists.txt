@@ -47,9 +47,14 @@ endif()
 target_include_directories(
     ${CUNIT_LIB_NAME}
     PUBLIC
-    $<BUILD_INTERFACE:${BUILD_ROOT}> # because "CUnit.h" is a configured file
-    $<BUILD_INTERFACE:${CUNIT_INC_DIR}>
-    $<INSTALL_INTERFACE:${INSTALL_INC_DIR}>
+    $<BUILD_INTERFACE:${CUNIT_CNF_HDRS}> # because "CUnit.h" is a configured file
+    $<BUILD_INTERFACE:${CUNIT_INC_ROOT}>
+    $<INSTALL_INTERFACE:${INSTALL_INC_ROOT}>
+)
+
+export(
+    TARGETS ${CUNIT_LIB_NAME}
+    FILE ${BUILD_ROOT}/Find${CUNIT_LIB_NAME}.cmake
 )
 
 install(

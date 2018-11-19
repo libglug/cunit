@@ -50,7 +50,7 @@
 #ifndef CUNIT_UTIL_H_SEEN
 #define CUNIT_UTIL_H_SEEN
 
-#include "CUnit.h"
+#include <CUnit/CUnit.h>
 
 #ifdef __cplusplus
 extern "C" {

@@ -56,13 +56,13 @@
 #include <limits.h>
 #include <time.h>
 
-#include "CUnit.h"
-#include "TestDB.h"
-#include "MyMem.h"
-#include "Util.h"
-#include "TestRun.h"
-#include "Automated.h"
-#include "CUnit_intl.h"
+#include <CUnit/CUnit.h>
+#include <CUnit/TestDB.h>
+#include <CUnit/MyMem.h>
+#include <CUnit/Util.h>
+#include <CUnit/TestRun.h>
+#include <CUnit/Automated.h>
+#include <CUnit/CUnit_intl.h>
 
 #define MAX_FILENAME_LENGTH		1025
 
