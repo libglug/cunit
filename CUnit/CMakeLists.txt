@@ -47,20 +47,26 @@ endif()
 target_include_directories(
     ${CUNIT_LIB_NAME}
     PUBLIC
-    $<BUILD_INTERFACE:${CMAKE_BINARY_DIR}> # because "CUnit.h" is a configured file
+    $<BUILD_INTERFACE:${BUILD_ROOT}> # because "CUnit.h" is a configured file
     $<BUILD_INTERFACE:${CUNIT_INC_DIR}>
     $<INSTALL_INTERFACE:${INSTALL_INC_DIR}>
 )
 
 install(
     TARGETS ${CUNIT_LIB_NAME}
-    DESTINATION ${INSTALL_LIB_DIR}
+    DESTINATION ${CMAKE_BINARY_DIR}/${INSTALL_LIB_DIR}
+    EXPORT "Find${CUNIT_LIB_NAME}"
+)
+
+install(
+    EXPORT "Find${CUNIT_LIB_NAME}"
+    DESTINATION ${INSTALL_ROOT}/cmake
 )
 
 # and install the lib in the share dir because Windows
 if (${BUILD_XMPLS} STREQUAL "ON")
     install(
         TARGETS ${CUNIT_LIB_NAME}
-        DESTINATION ${INSTALL_SHARE_DIR}
+        DESTINATION ${INSTALL_ROOT}/${INSTALL_SHARE_DIR}
     )
 endif()
