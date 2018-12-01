@@ -27,6 +27,7 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <CUnit/Assert.h>
 #include <CUnit/Basic.h>
 
 /* Pointer to the file used by the tests. */

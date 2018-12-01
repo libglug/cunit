@@ -23,6 +23,8 @@
 #include <string.h>
 
 #include <CUnit/Automated.h>
+#include <CUnit/TestDB.h>
+#include <CUnit/Typedefs.h>
 #include "ExampleTests.h"
 
 int main(int argc, char* argv[])

@@ -69,7 +69,6 @@
 #ifndef CUNIT_TESTRUN_H_SEEN
 #define CUNIT_TESTRUN_H_SEEN
 
-#include <CUnit/CUnit.h>
 #include <CUnit/CUError.h>
 #include <CUnit/TestDB.h>
 #include <stdio.h>

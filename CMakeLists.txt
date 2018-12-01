@@ -1,60 +1,46 @@
 project(CUnit)
 cmake_minimum_required(VERSION 3.0)
 
-set(CUNIT_VER_MAJOR 2)
-set(CUNIT_VER_MINOR 2)
-set(CUNIT_VER_PATCH 0)
+add_subdirectory(CUnit)
 
-set(CUNIT_LIB_NAME CUnit)
-option(BUILD_STATIC "Build as a static library instead of shared")
-set(INSTALL_ROOT ${CMAKE_CURRENT_BINARY_DIR} CACHE STRING "Specify a custom install directory")
+set(INSTALL_ROOT ${CMAKE_INSTALL_PREFIX} CACHE STRING "Specify a custom install directory")
 option(BUILD_XMPLS "Build (and install) the examples")
 
-set(BUILD_ROOT ${CMAKE_CURRENT_BINARY_DIR})
-
-set(INSTALL_LIB_DIR lib)
-set(INSTALL_DOC_ROOT doc)
-set(INSTALL_DOC_DIR ${INSTALL_DOC_ROOT}/${CUNIT_LIB_NAME})
-set(INSTALL_INC_ROOT include)
-set(INSTALL_INC_DIR ${INSTALL_INC_ROOT}/${CUNIT_LIB_NAME})
-set(INSTALL_MAN_DIR man)
-set(INSTALL_SHARE_ROOT share)
-set(INSTALL_SHARE_DIR ${INSTALL_SHARE_ROOT}/${CUNIT_LIB_NAME})
-
-set(CUNIT_CNF_HDRS ${BUILD_ROOT}/configured/headers)
-set(CUNIT_SRC_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/CUnit)
-set(CUNIT_INC_ROOT ${CUNIT_SRC_ROOT}/Headers)
-set(CUNIT_INC_DIR ${CUNIT_INC_ROOT}/CUnit)
-set(CUNIT_DOC_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/doc)
-set(CUNIT_EX_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/Examples)
-set(CUNIT_MAN_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/man)
-
-configure_file(${CUNIT_INC_DIR}/CUnit.h.in ${CUNIT_CNF_HDRS}/CUnit/CUnit.h)
-file(GLOB HEADERS "${CUNIT_INC_DIR}/*.h")
-list(APPEND HEADERS ${CUNIT_CNF_HDRS}/CUnit/CUnit.h)
-
-add_subdirectory(${CUNIT_SRC_ROOT})
-
+# install documentation
 install(
-    FILES ${HEADERS}
-    DESTINATION ${INSTALL_ROOT}/${INSTALL_INC_DIR}
+    DIRECTORY
+        doc/.
+    DESTINATION
+        ${INSTALL_ROOT}/doc/CUnit
 )
 
+# install the headers with the documentation
+file(GLOB HDR_FILES ${INSTALL_ROOT}/include/CUnit/*)
 install(
-    DIRECTORY ${CUNIT_DOC_ROOT}/.
-    DESTINATION ${INSTALL_ROOT}/${INSTALL_DOC_DIR}
+    FILES
+        ${HDR_FILES}
+    DESTINATION
+        ${INSTALL_ROOT}/doc/CUnit/headers
 )
 
+# install man pages
 install(
-    FILES ${HEADERS}
-    DESTINATION ${INSTALL_ROOT}/${INSTALL_DOC_DIR}/headers
+    DIRECTORY
+        man/.
+    DESTINATION
+        ${INSTALL_ROOT}/man
 )
 
-install(
-    DIRECTORY ${CUNIT_MAN_ROOT}/.
-    DESTINATION ${INSTALL_ROOT}/${INSTALL_MAN_DIR}
-)
-
+#install examples
 if (${BUILD_XMPLS} STREQUAL "ON")
-    add_subdirectory(${CUNIT_EX_ROOT})
+    add_subdirectory(Examples)
+    # copy the installed libs to the example root (mostly for Windows support)
+    file(GLOB LIB_FILES ${INSTALL_ROOT}/lib/*)
+    install(
+        FILES
+            ${LIB_FILES}
+        DESTINATION
+            ${INSTALL_ROOT}/share/CUnit
+    )
 endif()
+

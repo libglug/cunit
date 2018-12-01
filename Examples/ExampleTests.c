@@ -23,7 +23,8 @@
 #include <string.h>
 #include <assert.h>
 
-#include <CUnit/CUnit.h>
+#include <CUnit/Assert.h>
+#include <CUnit/Typedefs.h>
 #include "ExampleTests.h"
 
 /* WARNING - MAINTENANCE NIGHTMARE AHEAD

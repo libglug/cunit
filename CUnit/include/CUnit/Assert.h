@@ -19,103 +19,24 @@
  */
 
 /*
- *  ASSERT Macro definitions and general CUnit configuration definitions.
+ *  ASSERT Macro definitions.
  *
- *  09/Aug/2001   ASSERT definitions. (AK)
- *
- *  12/Mar/2003   New Assert definitions. (AK)
- *
- *  27/Jul/2003   Modified ASSERT_XXX Macro definitions. (AK)
- *
- *  15-Jul-2004   New interface, changed action on assert failure to not
- *                return, provided _FATAL versions of assertions to return
- *                from test function on failure. (JDS)
- *
- *  01-Sep-2004   Modified assertions for setjmp/longjmp mechanism of
- *                aborting test runs, added CU_FAIL and CU_PASS macros. (JDS)
- *
- *  07-May-2005   Added CU_ prefix to remaining CUnit defines (BOOL, TRUE,
- *                FALSE, MAX_...).  Added CU_UNREFERENCED_PARAMETER() define. (JDS)
- *
- *  14/Nov/2018   Removed deprecated interface. Update version vars. (DC)
+ *   1/Dec/2018   Split ASSERT macro defs from main header (DC)
  */
 
 /** @file
- * Basic CUnit include file for user and system code.
+ * CUnit assertion macros
  * Defines macros for assertions for use in user test cases.
- * Basic system macro definitions also appear here.
  */
 /** @addtogroup Framework
  * @{
  */
 
-#ifndef CUNIT_CUNIT_H_SEEN
-#define CUNIT_CUNIT_H_SEEN
+#ifndef CUNIT_ASSERT_H_SEEN
+#define CUNIT_ASSERT_H_SEEN
 
-#include <string.h>
 #include <math.h>
-
-/** CUnit version number. */
-#define CU_MAJOR_VERSION @CUNIT_VER_MAJOR@
-#define CU_MINOR_VERSION @CUNIT_VER_MINOR@
-#define CU_PATCH_VERSION @CUNIT_VER_PATCH@
-#define CU_VERSION "@CUNIT_VER_MAJOR@.@CUNIT_VER_MINOR@-@CUNIT_VER_PATCH@"
-
-/*  Max string lengths for names (includes terminating NULL. */
-/** Maximum length of a test name string. */
-#define CU_MAX_TEST_NAME_LENGTH 256
-/** Maximim length of a suite name string. */
-#define CU_MAX_SUITE_NAME_LENGTH 256
-
-/* Global type Definitions to be used for boolean operators. */
-#ifndef CU_BOOL
-  /** Boolean type for CUnit use. */
-  #define CU_BOOL int
-#endif
-
-#ifndef CU_TRUE
-  /** Boolean TRUE for CUnit use. */
-  #define CU_TRUE 1
-#endif
-
-#ifndef CU_FALSE
-  /** Boolean FALSE for CUnit use. */
-  #define CU_FALSE 0
-#endif
-
-#ifndef CU_UNREFERENCED_PARAMETER
-  /** Consistent approach to referencing unused parameters. */
-  #define CU_UNREFERENCED_PARAMETER(x) (void)x
-#endif
-
-#ifndef CU_MAX
-#  define CU_MAX(a,b) (((a) >= (b)) ? (a) : (b))
-#endif
-
-#ifndef CU_MIN
-#  define CU_MIN(a,b) (((a) >= (b)) ? (b) : (a))
-#endif
-
-#if defined(WIN32) || defined(_WIN32) || defined(__WIN32) || defined(__WIN32__)
-#  ifdef CU_DLL
-#    ifdef CU_BUILD_DLL
-#      define CU_EXPORT __declspec(dllexport)
-#    else
-#      define CU_EXPORT __declspec(dllimport)
-#    endif
-#  else
-#    define CU_EXPORT
-#  endif
-#  ifdef _MSC_VER
-#    define snprintf _snprintf
-#  endif
-#else
-#  define CU_EXPORT
-#endif  /* WIN32 */
-
-#include <CUnit/CUError.h>
-#include <CUnit/TestDB.h>   /* not needed here - included for user convenience */
-#include <CUnit/TestRun.h>  /* not needed here - include (after BOOL define) for user convenience */
+#include <CUnit/TestRun.h>
 
 /** Record a pass condition without performing a logical test. */
 #define CU_PASS(msg) \
@@ -329,6 +250,6 @@
 #define CU_ASSERT_DOUBLE_NOT_EQUAL_FATAL(actual, expected, granularity) \
   { CU_assertImplementation(((fabs((double)(actual) - (expected)) > fabs((double)(granularity)))), __LINE__, ("CU_ASSERT_DOUBLE_NOT_EQUAL_FATAL(" #actual ","  #expected "," #granularity ")"), __FILE__, "", CU_TRUE); }
 
-#endif  /*  CUNIT_CUNIT_H_SEEN  */
+#endif  /*  CUNIT_ASSERT_H_SEEN  */
 
 /** @} */

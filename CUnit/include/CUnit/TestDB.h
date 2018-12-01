@@ -64,7 +64,7 @@
 
 #include <setjmp.h>   /* jmp_buf */
 
-#include <CUnit/CUnit.h>
+#include <CUnit/Typedefs.h>
 #include <CUnit/CUError.h>
 
 #ifdef __cplusplus

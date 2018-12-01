@@ -1,77 +1,108 @@
+project(CUnit)
+cmake_minimum_required(VERSION 3.0)
+
+set(CUNIT_VER_MAJOR 2)
+set(CUNIT_VER_MINOR 3)
+set(CUNIT_VER_PATCH 0)
+
+option(BUILD_STATIC "Build as a static library instead of shared")
+set(INSTALL_ROOT ${CMAKE_INSTALL_PREFIX} CACHE STRING "Specify a custom install directory")
+
+set(CUNIT_CNF_HDRS ${CMAKE_CURRENT_BINARY_DIR}/configured/headers)
+set(CUNIT_INC_DIR include/CUnit)
+
+configure_file(${CUNIT_INC_DIR}/Version.h.in ${CUNIT_CNF_HDRS}/CUnit/Version.h)
+
+list(
+    APPEND
+    SOURCES
+    ${CUNIT_INC_DIR}/Assert.h
+    ${CUNIT_INC_DIR}/Automated.h
+    ${CUNIT_INC_DIR}/Basic.h
+    ${CUNIT_INC_DIR}/Console.h
+    ${CUNIT_INC_DIR}/CUError.h
+    ${CUNIT_INC_DIR}/CUnit.h
+    ${CUNIT_INC_DIR}/CUnit_intl.h
+    ${CUNIT_INC_DIR}/Export.h
+    ${CUNIT_INC_DIR}/MyMem.h
+    ${CUNIT_INC_DIR}/TestDB.h
+    ${CUNIT_INC_DIR}/TestRun.h
+    ${CUNIT_INC_DIR}/Typedefs.h
+    ${CUNIT_INC_DIR}/Util.h
+    ${CUNIT_INC_DIR}/Version.h.in
+    src/Automated/Automated.c
+    src/Basic/Basic.c
+    src/Console/Console.c
+    src/Framework/CUError.c
+    src/Framework/MyMem.c
+    src/Framework/TestDB.c
+    src/Framework/TestRun.c
+    src/Framework/Util.c
+#    src/Test/test_cunit.c
+#    src/Test/test_cunit.h
+)
+
 if (${BUILD_STATIC} STREQUAL "ON")
     set(LIB_TYPE STATIC)
 else()
     set(LIB_TYPE SHARED)
 endif()
 
-list(
-    APPEND
-    SOURCES
-    Headers/CUnit/Automated.h
-    Headers/CUnit/Basic.h
-    Headers/CUnit/Console.h
-    Headers/CUnit/CUError.h
-    Headers/CUnit/CUnit.h.in
-    Headers/CUnit/CUnit_intl.h
-    Headers/CUnit/MyMem.h
-    Headers/CUnit/TestDB.h
-    Headers/CUnit/TestRun.h
-    Headers/CUnit/Util.h
-    Sources/Automated/Automated.c
-    Sources/Basic/Basic.c
-    Sources/Console/Console.c
-    Sources/Framework/CUError.c
-    Sources/Framework/MyMem.c
-    Sources/Framework/TestDB.c
-    Sources/Framework/TestRun.c
-    Sources/Framework/Util.c
-#    Sources/Test/test_cunit.c
-#    Sources/Test/test_cunit.h
-)
-
 add_library(
-    ${CUNIT_LIB_NAME}
+    CUnit
     ${LIB_TYPE}
     ${SOURCES}
 )
 
 if (${LIB_TYPE} STREQUAL "SHARED")
     target_compile_definitions(
-        ${CUNIT_LIB_NAME}
+        CUnit
         PRIVATE
-        CU_DLL
-        CU_BUILD_DLL
+            CU_DLL
+            CU_BUILD_DLL
     )
 endif()
 
 target_include_directories(
-    ${CUNIT_LIB_NAME}
+    CUnit
     PUBLIC
-    $<BUILD_INTERFACE:${CUNIT_CNF_HDRS}> # because "CUnit.h" is a configured file
-    $<BUILD_INTERFACE:${CUNIT_INC_ROOT}>
-    $<INSTALL_INTERFACE:${INSTALL_INC_ROOT}>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+        $<BUILD_INTERFACE:${CUNIT_CNF_HDRS}> # because "Version.h" is a configured file
+        $<INSTALL_INTERFACE:include>
 )
 
+# export build tree
 export(
-    TARGETS ${CUNIT_LIB_NAME}
-    FILE ${BUILD_ROOT}/Find${CUNIT_LIB_NAME}.cmake
+    TARGETS
+        CUnit
+    FILE
+        CUnit-export.cmake
 )
 
+# install the library
 install(
-    TARGETS ${CUNIT_LIB_NAME}
-    DESTINATION ${CMAKE_BINARY_DIR}/${INSTALL_LIB_DIR}
-    EXPORT "Find${CUNIT_LIB_NAME}"
+    TARGETS
+        CUnit
+    DESTINATION
+        ${INSTALL_ROOT}/lib
+    EXPORT
+        FindCUnit
 )
 
+# install export file
 install(
-    EXPORT "Find${CUNIT_LIB_NAME}"
-    DESTINATION ${INSTALL_ROOT}/cmake
+    EXPORT
+        FindCUnit
+    DESTINATION
+        ${INSTALL_ROOT}/cmake
 )
 
-# and install the lib in the share dir because Windows
-if (${BUILD_XMPLS} STREQUAL "ON")
-    install(
-        TARGETS ${CUNIT_LIB_NAME}
-        DESTINATION ${INSTALL_ROOT}/${INSTALL_SHARE_DIR}
-    )
-endif()
+# install the headers
+file(GLOB HEADERS "${CUNIT_INC_DIR}/*.h")
+list(APPEND HEADERS ${CUNIT_CNF_HDRS}/CUnit/Version.h)
+install(
+    FILES
+        ${HEADERS}
+    DESTINATION
+        ${INSTALL_ROOT}/include/CUnit
+)

@@ -71,6 +71,10 @@
  @{
 */
 
+#ifndef CU_MAX
+#  define CU_MAX(a,b) (((a) >= (b)) ? (a) : (b))
+#endif
+
 #include <stdlib.h>
 #include <string.h>
 #include <assert.h>
@@ -78,7 +82,6 @@
 #include <setjmp.h>
 #include <time.h>
 
-#include <CUnit/CUnit.h>
 #include <CUnit/MyMem.h>
 #include <CUnit/TestDB.h>
 #include <CUnit/TestRun.h>

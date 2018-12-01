@@ -40,8 +40,9 @@
 #ifndef CUNIT_AUTOMATED_H_SEEN
 #define CUNIT_AUTOMATED_H_SEEN
 
-#include <CUnit/CUnit.h>
-#include <CUnit/TestDB.h>
+#include <CUnit/Export.h>
+#include <CUnit/CUError.h>
+#include <CUnit/Typedefs.h>
 
 #ifdef __cplusplus
 extern "C" {

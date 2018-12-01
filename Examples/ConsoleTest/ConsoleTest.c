@@ -21,6 +21,9 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include <CUnit/Typedefs.h>
+#include <CUnit/CUError.h>
+#include <CUnit/TestDB.h>
 #include <CUnit/Console.h>
 #include "ExampleTests.h"
 

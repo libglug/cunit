@@ -62,7 +62,6 @@
 #include <string.h>
 #include <stdarg.h>
 
-#include <CUnit/CUnit.h>
 #include <CUnit/MyMem.h>
 #include <CUnit/TestDB.h>
 #include <CUnit/TestRun.h>

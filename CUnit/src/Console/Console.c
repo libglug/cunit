@@ -50,18 +50,22 @@
  @{
 */
 
+#ifndef CU_MAX
+#  define CU_MAX(a,b) (((a) >= (b)) ? (a) : (b))
+#endif
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
 #include <assert.h>
 #include <string.h>
 
-#include <CUnit/CUnit.h>
 #include <CUnit/TestDB.h>
 #include <CUnit/Util.h>
 #include <CUnit/TestRun.h>
 #include <CUnit/Console.h>
 #include <CUnit/CUnit_intl.h>
+#include <CUnit/Version.h>
 
 /** Console interface status flag. */
 typedef enum

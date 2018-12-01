@@ -52,7 +52,6 @@
 #include <string.h>
 #include <time.h>
 
-#include <CUnit/CUnit.h>
 #include <CUnit/MyMem.h>
 #include <CUnit/CUnit_intl.h>
 

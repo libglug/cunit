@@ -107,7 +107,7 @@ typedef enum CU_ErrorAction {
 
 /* Error handling & reporting functions. */
 
-#include <CUnit/CUnit.h>
+#include <CUnit/Export.h>
 
 #ifdef __cplusplus
 extern "C" {
