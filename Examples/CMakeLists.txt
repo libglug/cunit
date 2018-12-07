@@ -1,4 +1,4 @@
-# This file assumes that the CUnit target is built by this project too
+find_package(CUnit REQUIRED)
 function(add_example TARGET TARGET_MAIN)
     add_executable(
         ${TARGET}

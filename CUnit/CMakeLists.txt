@@ -76,8 +76,11 @@ export(
     TARGETS
         CUnit
     FILE
-        CUnit-export.cmake
+        CUnitConfig.cmake
 )
+
+# export the package to be included in ther projects
+export(PACKAGE CUnit)
 
 # install the library
 install(
