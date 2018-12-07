@@ -19,6 +19,11 @@ function(add_example TARGET TARGET_MAIN)
         CUnit
     )
 
+    # TODO: double check these RPATHs actually work
+    set(CMAKE_MACOSX_RPATH "$ORIGIN")
+    set(CMAKE_INSTALL_RPATH "$ORIGIN")
+    set(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE)
+
     install(
         TARGETS
             ${TARGET}
