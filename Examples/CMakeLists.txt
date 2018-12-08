@@ -28,7 +28,7 @@ function(add_example TARGET TARGET_MAIN)
         TARGETS
             ${TARGET}
         DESTINATION
-            ${INSTALL_ROOT}/share/CUnit
+            share/CUnit
     )
 endfunction()
 

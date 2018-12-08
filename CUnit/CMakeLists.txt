@@ -6,7 +6,6 @@ set(CUNIT_VER_MINOR 3)
 set(CUNIT_VER_PATCH 0)
 
 option(BUILD_STATIC "Build as a static library instead of shared")
-set(INSTALL_ROOT ${CMAKE_INSTALL_PREFIX} CACHE STRING "Specify a custom install directory")
 
 set(CUNIT_CNF_HDRS ${CMAKE_CURRENT_BINARY_DIR}/configured/headers)
 set(CUNIT_INC_DIR include/CUnit)
@@ -68,6 +67,7 @@ target_include_directories(
     PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
         $<BUILD_INTERFACE:${CUNIT_CNF_HDRS}> # because "Version.h" is a configured file
+    INTERFACE
         $<INSTALL_INTERFACE:include>
 )
 
@@ -79,17 +79,17 @@ export(
         CUnitConfig.cmake
 )
 
-# export the package to be included in ther projects
+# export the package to be included in other projects
 export(PACKAGE CUnit)
 
 # install the library
 install(
     TARGETS
         CUnit
-    DESTINATION
-        ${INSTALL_ROOT}/lib
     EXPORT
         FindCUnit
+    DESTINATION
+        lib
 )
 
 # install export file
@@ -97,15 +97,21 @@ install(
     EXPORT
         FindCUnit
     DESTINATION
-        ${INSTALL_ROOT}/cmake
+        cmake
 )
 
 # install the headers
-file(GLOB HEADERS "${CUNIT_INC_DIR}/*.h")
-list(APPEND HEADERS ${CUNIT_CNF_HDRS}/CUnit/Version.h)
+install(
+    DIRECTORY
+        ${CUNIT_INC_DIR}
+    DESTINATION
+        include
+    FILES_MATCHING PATTERN
+        "*.h"
+)
 install(
     FILES
-        ${HEADERS}
+        ${CUNIT_CNF_HDRS}/CUnit/Version.h
     DESTINATION
-        ${INSTALL_ROOT}/include/CUnit
+        include/CUnit
 )
