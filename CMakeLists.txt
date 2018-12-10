@@ -1,9 +1,9 @@
-project(CUnit)
 cmake_minimum_required(VERSION 3.0)
-
-add_subdirectory(CUnit)
+project(CUnit_root)
 
 option(BUILD_XMPLS "Build (and install) the examples")
+
+add_subdirectory(CUnit)
 
 # install documentation
 install(
@@ -30,7 +30,7 @@ install(
         man
 )
 
-#install examples
+# build and install examples
 if (${BUILD_XMPLS} STREQUAL "ON")
     # disable find_package in the Examples subproject for finding CUnit
     macro(find_package)
@@ -41,13 +41,21 @@ if (${BUILD_XMPLS} STREQUAL "ON")
 
     add_subdirectory(Examples)
 
-    # copy the installed libs to the example root (mostly for Windows support)
-    file(GLOB LIB_FILES lib/*)
-    install(
-        FILES
-            ${LIB_FILES}
-        DESTINATION
-            share/CUnit
+    add_custom_command(
+        OUTPUT
+            copy_cunit
+        COMMAND
+            ${CMAKE_COMMAND} -E copy $<TARGET_FILE:CUnit> ${CMAKE_CURRENT_BINARY_DIR}/Examples
+        DEPENDS
+            CUnit
     )
+
+    add_custom_target(
+        copy_cunit_example
+        ALL
+        DEPENDS
+            copy_cunit
+    )
+
 endif()
 

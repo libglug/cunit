@@ -1,9 +1,9 @@
-project(CUnit)
 cmake_minimum_required(VERSION 3.0)
 
-set(CUNIT_VER_MAJOR 2)
-set(CUNIT_VER_MINOR 3)
-set(CUNIT_VER_PATCH 0)
+set(VER_MAJOR 2)
+set(VER_MINOR 3)
+set(VER_PATCH 0)
+project(CUnit VERSION ${VER_MAJOR}.${VER_MINOR}.${VER_PATCH})
 
 option(BUILD_STATIC "Build as a static library instead of shared")
 
@@ -37,8 +37,6 @@ list(
     src/Framework/TestDB.c
     src/Framework/TestRun.c
     src/Framework/Util.c
-#    src/Test/test_cunit.c
-#    src/Test/test_cunit.h
 )
 
 if (${BUILD_STATIC} STREQUAL "ON")
