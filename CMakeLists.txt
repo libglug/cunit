@@ -14,7 +14,7 @@ install(
 )
 
 # install the headers with the documentation
-file(GLOB HDR_FILES include/CUnit/*)
+file(GLOB HDR_FILES ${CMAKE_INSTALL_PREFIX}/include/CUnit/*)
 install(
     FILES
         ${HDR_FILES}
