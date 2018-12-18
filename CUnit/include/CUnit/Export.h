@@ -24,7 +24,6 @@
  *   1/Dec/2018   Split CU_EXPORT macro defs from main header (DC)
  */
 
-
 /** @file
  *  Export macro for windows dlls.
  */
