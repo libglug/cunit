@@ -20,9 +20,25 @@ function(add_example TARGET TARGET_MAIN)
     )
 
     # TODO: double check these RPATHs actually work
-    set(CMAKE_MACOSX_RPATH "$ORIGIN")
-    set(CMAKE_INSTALL_RPATH "$ORIGIN")
+    list(
+        APPEND CMAKE_MACOSX_RPATH
+            "@ORIGIN"
+            "@executable_path"
+            "@loader_path"
+    )
+    list(
+        APPEND CMAKE_INSTALL_RPATH
+            "$ORIGIN"
+    )
     set(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE)
+
+    add_custom_command(
+        TARGET
+            ${TARGET}
+        COMMAND
+            ${CMAKE_COMMAND} -E copy_if_different
+                $<TARGET_FILE:CUnit> ${CMAKE_CURRENT_BINARY_DIR}/Examples
+    )
 
     install(
         TARGETS
