@@ -36,6 +36,7 @@
 #define CUNIT_ASSERT_H_SEEN
 
 #include <math.h>
+#include <string.h>
 #include <CUnit/TestRun.h>
 
 /** Record a pass condition without performing a logical test. */
