@@ -23,6 +23,7 @@ list(
     ${CUNIT_INC_DIR}/CUnit.h
     ${CUNIT_INC_DIR}/CUnit_intl.h
     ${CUNIT_INC_DIR}/Export.h
+    ${CUNIT_INC_DIR}/Mocks.h
     ${CUNIT_INC_DIR}/MyMem.h
     ${CUNIT_INC_DIR}/TestDB.h
     ${CUNIT_INC_DIR}/TestRun.h
