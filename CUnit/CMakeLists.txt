@@ -68,6 +68,11 @@ target_include_directories(
     INTERFACE
         $<INSTALL_INTERFACE:include>
 )
+target_compile_definitions(
+    CUnit
+    PRIVATE
+        _CRT_SECURE_NO_WARNINGS
+)
 
 # export build tree
 export(

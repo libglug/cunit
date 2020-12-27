@@ -41,6 +41,8 @@
  *                without needing to <ENTER>, like curses.  (JDS)
  *
  *  02-May-2006   Added internationalization hooks.  (JDS)
+ *
+ *  26-Dec-2020   Switched to unsigned int width[]. Added casts where needed (DC)
  */
 
 /** @file
@@ -480,7 +482,7 @@ static void list_suites(CU_pTestRegistry pRegistry)
 {
   CU_pSuite pCurSuite = NULL;
   int i;
-  static size_t width[6];
+  static unsigned int width[6];
 
   if (NULL == pRegistry) {
     pRegistry = CU_get_registry();
@@ -496,12 +498,12 @@ static void list_suites(CU_pTestRegistry pRegistry)
 
   /* only need to calculate formatting widths once */
   if (0 == width[0]) {
-    width[0] = CU_number_width(pRegistry->uiNumberOfSuites) + 1;
+    width[0] = (unsigned int)CU_number_width(pRegistry->uiNumberOfSuites) + 1;
     width[1] = 34;
-    width[2] = CU_MAX(strlen(_("Init?")), CU_MAX(f_yes_width, f_no_width)) + 1;
-    width[3] = CU_MAX(strlen(_("Cleanup?")), CU_MAX(f_yes_width, f_no_width)) + 1;
-    width[4] = CU_MAX(strlen(_("#Tests")), CU_number_width(pRegistry->uiNumberOfTests) + 1) + 1;
-    width[5] = CU_MAX(strlen(_("Active?")), CU_MAX(f_yes_width, f_no_width)) + 1;
+    width[2] = (unsigned int)CU_MAX(strlen(_("Init?")), CU_MAX(f_yes_width, f_no_width)) + 1;
+    width[3] = (unsigned int)CU_MAX(strlen(_("Cleanup?")), CU_MAX(f_yes_width, f_no_width)) + 1;
+    width[4] = (unsigned int)CU_MAX(strlen(_("#Tests")), CU_number_width(pRegistry->uiNumberOfTests) + 1) + 1;
+    width[5] = (unsigned int)CU_MAX(strlen(_("Active?")), CU_MAX(f_yes_width, f_no_width)) + 1;
   }
 
   fprintf(stdout, "\n%s",   _("--------------------- Registered Suites -----------------------------"));
@@ -537,7 +539,7 @@ static void list_tests(CU_pSuite pSuite)
 {
   CU_pTest pCurTest = NULL;
   unsigned int uiCount;
-  static size_t width[3];
+  static unsigned int width[3];
 
   assert(NULL != pSuite);
   assert(NULL != pSuite->pName);
@@ -552,10 +554,10 @@ static void list_tests(CU_pSuite pSuite)
   assert(NULL != pSuite->pTest);
 
   /* only number of tests can change between calls */
-  width[0] = CU_number_width(pSuite->uiNumberOfTests) + 1;
+  width[0] = (unsigned int)CU_number_width(pSuite->uiNumberOfTests) + 1;
   if (0 == width[1]) {
     width[1] = 34;
-    width[2] = CU_MAX(strlen(_("Active?")), CU_MAX(f_yes_width, f_no_width)) + 1;
+    width[2] = (unsigned int)CU_MAX(strlen(_("Active?")), CU_MAX(f_yes_width, f_no_width)) + 1;
   }
 
   fprintf(stdout, "\n%s",
